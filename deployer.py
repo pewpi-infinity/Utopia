@@ -90,7 +90,13 @@ class Deployer:
             os.makedirs(directory, exist_ok=True)
     
     def _run_hooks(self, hook_type: str):
-        """Run deployment hooks"""
+        """
+        Run deployment hooks
+        
+        WARNING: Hooks are executed using shell=True. Only use trusted hook
+        commands from your configuration file. Do not allow user input to be
+        used directly as hook commands as this could create a security risk.
+        """
         hooks = self.config.get("deployment_hooks", {}).get(hook_type, [])
         for hook in hooks:
             self.logger.info(f"Running {hook_type} hook: {hook}")
@@ -127,12 +133,16 @@ class Deployer:
         backup_dir = self.config.get("backup_dir")
         max_backups = self.config.get("max_backups", 5)
         
-        backups = sorted(
-            [os.path.join(backup_dir, d) for d in os.listdir(backup_dir)
-             if os.path.isdir(os.path.join(backup_dir, d))],
-            key=os.path.getmtime,
-            reverse=True
-        )
+        if not os.path.exists(backup_dir):
+            return
+        
+        backups = []
+        for d in os.listdir(backup_dir):
+            backup_path = os.path.join(backup_dir, d)
+            if os.path.isdir(backup_path):
+                backups.append(backup_path)
+        
+        backups.sort(key=os.path.getmtime, reverse=True)
         
         for backup in backups[max_backups:]:
             self.logger.info(f"Removing old backup: {backup}")
@@ -307,12 +317,12 @@ class Deployer:
         if not os.path.exists(backup_dir):
             return []
         
-        backups = sorted(
-            [d for d in os.listdir(backup_dir)
-             if os.path.isdir(os.path.join(backup_dir, d))],
-            reverse=True
-        )
-        return backups
+        backups = []
+        for d in os.listdir(backup_dir):
+            if os.path.isdir(os.path.join(backup_dir, d)):
+                backups.append(d)
+        
+        return sorted(backups, reverse=True)
 
 
 if __name__ == "__main__":

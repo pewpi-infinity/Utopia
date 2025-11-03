@@ -216,6 +216,19 @@ python3 test_deployer.py -v
 4. **Backup Retention**: Adjust `max_backups` based on your storage and requirements
 5. **Monitoring**: Monitor deployment logs for any issues
 
+## Security Considerations
+
+### Hook Command Execution
+
+Deployment hooks are executed using shell commands. **Important security notes:**
+
+- Only use trusted commands in your `deploy_config.json` file
+- Never allow untrusted user input to be used as hook commands
+- Review all hook commands before deployment
+- Store configuration files with appropriate permissions (e.g., `chmod 600 deploy_config.json`)
+
+The hook system is designed for administrator-controlled deployments where the configuration file is trusted and secured.
+
 ## Troubleshooting
 
 ### Deployment fails with permission errors
