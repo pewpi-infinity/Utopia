@@ -1,1 +1,66 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Infinity - Rogers Core System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="themes.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <!-- Google Sign-In Section -->
+    <div id="authSection" class="auth-section">
+        <div class="auth-container">
+            <div class="logo">
+                <h1>Infinity</h1>
+                <p class="tagline">Rogers Core System</p>
+            </div>
+            <div id="g_id_onload"
+                 data-client_id="16937806382-leqbaginj3igrhei58nsab7tb4hsb7435.apps.googleusercontent.com"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" 
+                 data-type="standard"
+                 data-size="large"
+                 data-theme="outline"
+                 data-text="sign_in_with"
+                 data-shape="rectangular"
+                 data-logo_alignment="left">
+            </div>
+            <p class="auth-info">Sign in to access all realms</p>
+            <p class="auth-email">Contact: marvaseater@gmail.com</p>
+            
+            <!-- Troubleshooting -->
+            <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 12px;">
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold;">🔧 Troubleshooting Google Sign-In</summary>
+                    <div style="margin-top: 10px; text-align: left; line-height: 1.6;">
+                        <p><strong>If the Google button doesn't appear:</strong></p>
+                        <ol style="margin-left: 20px;">
+                            <li>Make sure you're accessing via HTTPS or localhost</li>
+                            <li>Check that third-party cookies are enabled</li>
+                            <li>Try clearing browser cache and cookies</li>
+                            <li>Disable ad blockers/privacy extensions temporarily</li>
+                            <li>Try a different browser (Chrome recommended)</li>
+                        </ol>
+                        <p style="margin-top: 10px;"><strong>For testing:</strong></p>
+                        <button onclick="bypassAuth()" style="padding: 8px 15px; background: #0070ba; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 5px;">
+                            🔓 Bypass Auth (Demo Mode)
+                        </button>
+                        <p style="margin-top: 8px; color: #ffd700; font-size: 11px;">
+                            ⚠️ Demo mode: Limited features, no token persistence
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden until authenticated) -->
+    <div id="mainApp" class="main-app" style="display: none;">
+        <!-- Sidebar Menu -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2>Infinity</h2>
