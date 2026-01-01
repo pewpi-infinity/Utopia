@@ -1,1 +1,20 @@
-{"operator":"Kris Watson","attached":"2025-12-25T08:20:55Z","mode":"passive"}
+{
+  "operator": "Kris Watson",
+  "attached": "2025-12-25T08:20:55Z",
+  "mode": "active",
+  "integrations": {
+    "mongoose_os_repo": "pewpi-infinity/mongoose.os",
+    "research_tools": true,
+    "cart_system": true,
+    "terminal": true,
+    "security": true,
+    "ai_pipeline": true
+  },
+  "features": {
+    "file_scanning": true,
+    "auto_repair": true,
+    "auto_commit": true,
+    "chat_integration": true,
+    "file_indexing": true
+  }
+}
