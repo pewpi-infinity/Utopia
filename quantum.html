@@ -196,6 +196,64 @@
         .cursor {
             animation: pulse 1s infinite;
         }
+
+        /* Modal styles */
+        .service-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            color: white;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: white;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .modal-endpoint {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            color: #4ade80;
+        }
     </style>
 </head>
 <body>
@@ -335,7 +393,42 @@
         </div>
     </div>
 
+    <!-- Service Access Modal -->
+    <div id="serviceModal" class="service-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeServiceModal()">&times;</span>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+                <div class="modal-endpoint" id="modalEndpoint"></div>
+                <p style="margin-top: 15px; color: rgba(255, 255, 255, 0.7); font-size: 14px;">
+                    <strong>Note:</strong> Full implementation requires backend infrastructure.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <script>
+        function showServiceModal(title, message, endpoint) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('modalEndpoint').textContent = 'Endpoint: ' + endpoint;
+            const modal = document.getElementById('serviceModal');
+            modal.style.display = 'flex';
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target === modal) {
+                closeServiceModal();
+            }
+        }
+
         function accessService(service) {
             // Service access routing
             const serviceRoutes = {
@@ -348,8 +441,12 @@
             };
 
             if (serviceRoutes[service]) {
-                // For now, show an alert. In production, this would route to the service
-                alert(`Accessing ${service.charAt(0).toUpperCase() + service.slice(1)} Service Portal...\n\nEndpoint: ${serviceRoutes[service]}\n\nNote: Full implementation requires backend infrastructure.`);
+                const serviceName = service.charAt(0).toUpperCase() + service.slice(1);
+                showServiceModal(
+                    `🚀 Accessing ${serviceName} Service`,
+                    `Connecting to ${serviceName} Service Portal...`,
+                    serviceRoutes[service]
+                );
             }
         }
 

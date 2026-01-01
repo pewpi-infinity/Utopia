@@ -161,6 +161,12 @@
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
         }
 
+        .link-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .repo-info {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(102, 126, 234, 0.3);
@@ -335,7 +341,7 @@
                     <li>Data visualization</li>
                     <li>Performance metrics</li>
                 </ul>
-                <button class="link-button" disabled style="opacity: 0.6; cursor: not-allowed;">
+                <button class="link-button" disabled>
                     Coming Soon
                 </button>
             </div>
@@ -375,7 +381,7 @@
                     <li>Push notifications</li>
                     <li>Chat integration</li>
                 </ul>
-                <button class="link-button" disabled style="opacity: 0.6; cursor: not-allowed;">
+                <button class="link-button" disabled>
                     Coming Soon
                 </button>
             </div>
