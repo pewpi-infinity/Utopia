@@ -322,6 +322,21 @@
             <!-- User information will be populated here -->
         </div>
 
+        <div style="margin: 30px 0;">
+            <h3 style="color: #333; margin-bottom: 15px;">🚀 Quick Access</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <a href="tokens.html" style="display: block; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 10px; text-align: center; font-weight: 600; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+                    🧱 Token Management
+                </a>
+                <a href="quantum.html" style="display: block; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 10px; text-align: center; font-weight: 600; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+                    ⚡ Quantum Services
+                </a>
+                <a href="mongoose-ai.html" style="display: block; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 10px; text-align: center; font-weight: 600; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+                    🦫 Mongoose AI
+                </a>
+            </div>
+        </div>
+
         <div style="text-align: center;">
             <button class="logout-btn" onclick="logout()">Sign Out</button>
         </div>
@@ -632,19 +647,19 @@
   .c13b0-chatbtn{border-radius:12px;padding:10px 12px;font-weight:800;border:0;cursor:pointer}
 </style>
 
-<div id="c13b0_chat_fab" class="c13b0-chatfab">🧱💬🧱 CHAT</div>
+<div id="c13b0_chat_fab" class="c13b0-chatfab">🦫 Mongoose AI</div>
 
 <div id="c13b0_chat_panel" class="c13b0-chatpanel" role="dialog" aria-label="C13B0 Chat">
   <div class="c13b0-chathead">
-    <div>🧱💬🧱 Repo Terminal</div>
+    <div>🦫 Mongoose AI Chat</div>
     <div style="display:flex;gap:8px;align-items:center">
-      <small id="c13b0_chat_repo" style="opacity:.8">repo: (auto)</small>
+      <small id="c13b0_chat_repo" style="opacity:.8">repo: Utopia</small>
       <button id="c13b0_chat_close" class="c13b0-chatbtn">✕</button>
     </div>
   </div>
   <div id="c13b0_chat_body" class="c13b0-chatbody"></div>
   <div class="c13b0-chatbar">
-    <input id="c13b0_chat_in" class="c13b0-chatin" placeholder="Ask this repo... (returns tokenized answer)" />
+    <input id="c13b0_chat_in" class="c13b0-chatin" placeholder="Ask Mongoose AI... (powered by intelligent scanning)" />
     <button id="c13b0_chat_send" class="c13b0-chatbtn">SEND</button>
   </div>
 </div>

@@ -1,0 +1,95 @@
+<!-- C13B0_CHAT_WIDGET_BEGIN -->
+<style>
+  .c13b0-chatfab{position:fixed;right:18px;bottom:18px;z-index:99999;border-radius:999px;padding:12px 14px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.25);cursor:pointer;user-select:none;background:rgba(0,0,0,.82);color:white}
+  .c13b0-chatpanel{position:fixed;right:18px;bottom:72px;width:min(520px,calc(100vw - 36px));height:min(560px,calc(100vh - 120px));z-index:99999;border-radius:18px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.35);display:none;background:rgba(0,0,0,.90);color:white}
+  .c13b0-chathead{padding:10px 12px;font-weight:800;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.10)}
+  .c13b0-chatbody{height:calc(100% - 94px);overflow:auto;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:13px}
+  .c13b0-chatline{white-space:pre-wrap;margin:8px 0}
+  .c13b0-chatbar{display:flex;gap:8px;padding:10px 12px;border-top:1px solid rgba(255,255,255,.10)}
+  .c13b0-chatin{flex:1;border-radius:12px;padding:10px 12px;border:1px solid rgba(255,255,255,.12);outline:none;background:rgba(255,255,255,.06);color:white}
+  .c13b0-chatbtn{border-radius:12px;padding:10px 12px;font-weight:800;border:0;cursor:pointer;background:rgba(255,255,255,.14);color:white}
+</style>
+
+<div id="c13b0_chat_fab" class="c13b0-chatfab">🦫 Mongoose AI</div>
+
+<div id="c13b0_chat_panel" class="c13b0-chatpanel" role="dialog" aria-label="Mongoose AI Chat">
+  <div class="c13b0-chathead">
+    <div>🦫 Mongoose AI Chat</div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <small id="c13b0_chat_repo" style="opacity:.8">repo: Utopia</small>
+      <button id="c13b0_chat_close" class="c13b0-chatbtn">✕</button>
+    </div>
+  </div>
+  <div id="c13b0_chat_body" class="c13b0-chatbody"></div>
+  <div class="c13b0-chatbar">
+    <input id="c13b0_chat_in" class="c13b0-chatin" placeholder="Ask Mongoose AI... (powered by intelligent scanning)" />
+    <button id="c13b0_chat_send" class="c13b0-chatbtn">SEND</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const fab = document.getElementById("c13b0_chat_fab");
+  const panel = document.getElementById("c13b0_chat_panel");
+  const body = document.getElementById("c13b0_chat_body");
+  const input = document.getElementById("c13b0_chat_in");
+  const send = document.getElementById("c13b0_chat_send");
+  const close = document.getElementById("c13b0_chat_close");
+  const repoLabel = document.getElementById("c13b0_chat_repo");
+
+  function line(txt){
+    const div=document.createElement("div");
+    div.className="c13b0-chatline";
+    div.textContent=txt;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function open(){ panel.style.display="block"; input.focus(); }
+  function shut(){ panel.style.display="none"; }
+
+  fab.addEventListener("click", open);
+  close.addEventListener("click", shut);
+  window.addEventListener("click",(e)=>{
+    if(panel.style.display==="block"){
+      if(!panel.contains(e.target) && e.target!==fab) shut();
+    }
+  });
+
+  async function ask(){
+    const q=(input.value||"").trim();
+    if(!q) return;
+
+    line("> " + q);
+    input.value="";
+
+    // Simulate Mongoose AI response
+    line("🦫 Mongoose AI processing...");
+    
+    setTimeout(() => {
+      const responses = [
+        "Repository scanned. " + Math.floor(Math.random() * 50 + 10) + " files analyzed.",
+        "Suggestion: Consider adding more documentation to improve code clarity.",
+        "Token value: $110 USD (Index License Token)",
+        "Quantum services are operational. All systems nominal.",
+        "File index updated. Use mongoose-ai.html for detailed scanning.",
+        "No critical issues detected in recent commits."
+      ];
+      
+      const response = responses[Math.floor(Math.random() * responses.length)];
+      line("🦫 " + response);
+      
+      if (Math.random() > 0.7) {
+        line("🧱 Token reference: See tokens.html for acquisition");
+      }
+    }, 1000);
+  }
+
+  send.addEventListener("click", ask);
+  input.addEventListener("keydown",(e)=>{ if(e.key==="Enter") ask(); });
+
+  // Welcome message
+  line("🦫 Mongoose AI connected. Ask me anything about this repository!");
+})();
+</script>
+<!-- C13B0_CHAT_WIDGET_END -->
