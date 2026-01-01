@@ -1,0 +1,21 @@
+{
+  "app_name": "my-application",
+  "deploy_dir": "./deployments",
+  "source_dir": "./src",
+  "backup_dir": "./backups",
+  "max_backups": 5,
+  "deployment_hooks": {
+    "pre_deploy": [
+      "echo 'Starting deployment...'"
+    ],
+    "post_deploy": [
+      "echo 'Deployment completed successfully!'"
+    ],
+    "pre_rollback": [
+      "echo 'Starting rollback...'"
+    ],
+    "post_rollback": [
+      "echo 'Rollback completed successfully!'"
+    ]
+  }
+}
