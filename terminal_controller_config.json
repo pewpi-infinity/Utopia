@@ -1,0 +1,16 @@
+{
+  "ollama_host": "http://localhost:11434",
+  "default_model": "llama3.2",
+  "fallback_model": "llama3.1",
+  "claude_model": "claude-3-5-sonnet-20241022",
+  "max_conversation_history": 20,
+  "code_execution_timeout": 30,
+  "log_level": "INFO",
+  "repositories": {
+    "utopia": "~/repos/utopia",
+    "joe": "~/repos/joe",
+    "infinity": "~/repos/infinity",
+    "vectors": "~/repos/vectors"
+  },
+  "model_cache_dir": "~/.ollama"
+}
